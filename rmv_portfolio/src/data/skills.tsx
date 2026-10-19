@@ -1,64 +1,47 @@
 import {
-  SiReact,
-  SiNextdotjs,
+  SiGo,
+  SiPython,
   SiTypescript,
   SiJavascript,
-  SiTailwindcss,
+  SiReact,
   SiHtml5,
-  SiCss3,
-  SiNodedotjs,
-  SiExpress,
-  SiPython,
-  SiDjango,
-  SiFastapi,
-  SiPhp,
-  SiMongodb,
-  SiPostgresql,
-  SiMysql,
-  SiRedis,
-  SiFirebase,
-  SiGit,
-  SiGithub,
-  SiDocker,
-  SiVercel,
-  SiAmazon,
-  SiGooglecloud,
-  SiFigma,
-  SiPostman,
-  SiNotion,
-  SiArduino,
-  SiRaspberrypi,
-  SiPytorch,
-  SiJupyter,
-  SiAnaconda,
-  SiC,
-  SiCplusplus,
-  SiCisco,
-  SiMui,
-  SiZod,
-  SiNumpy,
-  SiPandas,
-  SiSocketdotio,
-  SiAntdesign,
-  SiSiemens,
+  SiAngular,
+  SiVega,
+  SiGoogle,
+  SiKubernetes,
+  SiGithubactions,
 } from "react-icons/si"
-import { VscCode } from "react-icons/vsc"
-import { FaMicrochip, FaCog, FaRobot, FaDatabase, FaCode, FaCloud } from "react-icons/fa"
-
-export type SkillLevel = "Beginner" | "Intermediate" | "Advanced" | "Expert"
+import {
+  FaDatabase,
+  FaCode,
+  FaCloud,
+  FaJava,
+  FaRobot,
+  FaPlug,
+  FaExchangeAlt,
+  FaSearch,
+  FaServer,
+  FaCubes,
+  FaCog,
+  FaCheckCircle,
+  FaTachometerAlt,
+  FaProjectDiagram,
+  FaGlobeAmericas,
+  FaUsers,
+  FaShieldAlt,
+  FaBook,
+} from "react-icons/fa"
 
 export type CategoryId =
   | "frontend"
+  | "ai"
   | "backend"
-  | "data-ai"
-  | "iot"
-  | "databases"
-  | "devops"
+  | "deployment"
+  | "engineering"
 
 export interface Skill {
   name: string
   icon: React.ComponentType<{ className?: string }>
-  level: SkillLevel
   color: string
   /** A technology can legitimately belong to more than one domain. */
   categories: CategoryId[]
@@ -79,115 +62,80 @@ export interface Category {
 /**
  * Languages cut across every domain, so they get their own visual treatment
  * (a horizontal chip strip above the tabbed grid) rather than living inside a
- * single category.
+ * single category. Matches "Core Languages" on the resume.
  */
 export const languages: Language[] = [
-  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
-  { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
+  { name: "Go", icon: SiGo, color: "text-cyan-500" },
   { name: "Python", icon: SiPython, color: "text-yellow-500" },
-  { name: "C", icon: SiC, color: "text-blue-700" },
-  { name: "C++", icon: SiCplusplus, color: "text-blue-600" },
-  { name: "PHP", icon: SiPhp, color: "text-indigo-600" },
-  { name: "Assembly", icon: FaCode, color: "text-red-600" },
+  { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
+  { name: "SQL", icon: FaDatabase, color: "text-orange-500" },
 ]
 
+/** One category per "Technical Skills" group on the resume. */
 export const categories: Category[] = [
   {
     id: "frontend",
-    label: "Frontend",
-    description: "Modern, responsive user interfaces",
+    label: "Frontend & Visualization",
+    description: "Interfaces and data visualization",
+  },
+  {
+    id: "ai",
+    label: "AI & Agent Systems",
+    description: "LLMs, agents and retrieval",
   },
   {
     id: "backend",
-    label: "Backend",
-    description: "Server-side apps, APIs and realtime systems",
+    label: "Backend Architecture",
+    description: "Services, APIs and contracts",
   },
   {
-    id: "data-ai",
-    label: "Data & AI",
-    description: "Machine learning, data analysis and AI",
+    id: "deployment",
+    label: "Deployment & Quality",
+    description: "Delivery, validation and performance",
   },
   {
-    id: "iot",
-    label: "IoT & Hardware",
-    description: "Embedded systems, sensors and networking",
-  },
-  {
-    id: "databases",
-    label: "Databases",
-    description: "Data storage and persistence layers",
-  },
-  {
-    id: "devops",
-    label: "DevOps & Tools",
-    description: "Deployment, tooling and productivity",
+    id: "engineering",
+    label: "Distributed Engineering",
+    description: "How the work gets designed and delivered",
   },
 ]
 
-/**
- * Flat, de-duplicated technology list — each technology appears exactly once
- * and declares every domain it belongs to via `categories`.
- */
 export const skills: Skill[] = [
-  // ── Frontend ──
-  { name: "React", icon: SiReact, level: "Advanced", color: "text-blue-500", categories: ["frontend"] },
-  { name: "Next.js", icon: SiNextdotjs, level: "Advanced", color: "text-black dark:text-white", categories: ["frontend"] },
-  { name: "Tailwind CSS", icon: SiTailwindcss, level: "Advanced", color: "text-cyan-500", categories: ["frontend"] },
-  { name: "Material UI", icon: SiMui, level: "Advanced", color: "text-blue-600", categories: ["frontend"] },
-  { name: "Shadcn", icon: FaCog, level: "Advanced", color: "text-gray-700 dark:text-gray-300", categories: ["frontend"] },
-  { name: "Ant Design", icon: SiAntdesign, level: "Intermediate", color: "text-blue-500", categories: ["frontend"] },
-  { name: "HTML5", icon: SiHtml5, level: "Expert", color: "text-orange-600", categories: ["frontend"] },
-  { name: "CSS3", icon: SiCss3, level: "Advanced", color: "text-blue-500", categories: ["frontend"] },
-  { name: "Zustand", icon: FaDatabase, level: "Advanced", color: "text-orange-500", categories: ["frontend"] },
-  // Zod is used for both client form validation and server-side schemas.
-  { name: "Zod", icon: SiZod, level: "Advanced", color: "text-blue-600", categories: ["frontend", "backend"] },
+  // ── Frontend & Visualization ──
+  { name: "React", icon: SiReact, color: "text-blue-500", categories: ["frontend"] },
+  { name: "TSX", icon: SiTypescript, color: "text-blue-600", categories: ["frontend"] },
+  { name: "HTML/CSS", icon: SiHtml5, color: "text-orange-600", categories: ["frontend"] },
+  { name: "AngularJS", icon: SiAngular, color: "text-red-600", categories: ["frontend"] },
+  { name: "Vega-Lite", icon: SiVega, color: "text-sky-600", categories: ["frontend"] },
 
-  // ── Backend ──
-  { name: "Node.js", icon: SiNodedotjs, level: "Advanced", color: "text-green-600", categories: ["backend"] },
-  { name: "Express.js", icon: SiExpress, level: "Advanced", color: "text-gray-700 dark:text-gray-300", categories: ["backend"] },
-  { name: "Django", icon: SiDjango, level: "Intermediate", color: "text-green-700", categories: ["backend"] },
-  { name: "FastAPI", icon: SiFastapi, level: "Intermediate", color: "text-teal-500", categories: ["backend"] },
-  { name: "WebSockets", icon: SiSocketdotio, level: "Advanced", color: "text-gray-800 dark:text-white", categories: ["backend"] },
-  { name: "WebRTC", icon: FaCode, level: "Intermediate", color: "text-orange-500", categories: ["backend"] },
-  { name: "Ably Realtime", icon: FaCloud, level: "Intermediate", color: "text-purple-500", categories: ["backend"] },
+  // ── AI & Agent Systems ──
+  { name: "Large Language Models (LLMs)", icon: FaRobot, color: "text-purple-500", categories: ["ai"] },
+  { name: "Google Agent Development Kit (ADK)", icon: SiGoogle, color: "text-blue-500", categories: ["ai"] },
+  { name: "Model Context Protocol (MCP)", icon: FaPlug, color: "text-amber-600", categories: ["ai"] },
+  { name: "Agent2Agent (A2A)", icon: FaExchangeAlt, color: "text-teal-500", categories: ["ai"] },
+  { name: "Retrieval-Augmented Generation (RAG)", icon: FaSearch, color: "text-emerald-500", categories: ["ai"] },
 
-  // ── Data & AI ──
-  { name: "PyTorch", icon: SiPytorch, level: "Intermediate", color: "text-orange-600", categories: ["data-ai"] },
-  { name: "YOLO", icon: FaRobot, level: "Intermediate", color: "text-purple-600", categories: ["data-ai"] },
-  { name: "NumPy", icon: SiNumpy, level: "Advanced", color: "text-blue-600", categories: ["data-ai"] },
-  { name: "Pandas", icon: SiPandas, level: "Advanced", color: "text-purple-700", categories: ["data-ai"] },
-  { name: "Google Colab", icon: SiPython, level: "Advanced", color: "text-yellow-600", categories: ["data-ai"] },
-  { name: "Jupyter Notebook", icon: SiJupyter, level: "Advanced", color: "text-orange-500", categories: ["data-ai"] },
-  { name: "Anaconda", icon: SiAnaconda, level: "Advanced", color: "text-green-600", categories: ["data-ai"] },
+  // ── Backend Architecture ──
+  { name: "gRPC", icon: FaServer, color: "text-teal-600", categories: ["backend"] },
+  { name: "Protocol Buffers", icon: FaCode, color: "text-blue-500", categories: ["backend"] },
+  { name: "REST APIs", icon: FaCloud, color: "text-sky-500", categories: ["backend"] },
+  { name: "Java", icon: FaJava, color: "text-red-500", categories: ["backend"] },
+  { name: "Microservices", icon: FaCubes, color: "text-indigo-500", categories: ["backend"] },
 
-  // ── IoT & Hardware ──
-  { name: "Arduino", icon: SiArduino, level: "Advanced", color: "text-teal-600", categories: ["iot"] },
-  { name: "ESP32", icon: FaMicrochip, level: "Advanced", color: "text-red-500", categories: ["iot"] },
-  { name: "Raspberry Pi", icon: SiRaspberrypi, level: "Advanced", color: "text-red-600", categories: ["iot"] },
-  { name: "Arduino Cloud", icon: SiArduino, level: "Intermediate", color: "text-cyan-500", categories: ["iot"] },
-  { name: "Blynk", icon: FaCog, level: "Intermediate", color: "text-blue-500", categories: ["iot"] },
-  { name: "PLC Siemens", icon: SiSiemens, level: "Intermediate", color: "text-gray-700 dark:text-gray-300", categories: ["iot"] },
-  { name: "Cisco Packet Tracer", icon: SiCisco, level: "Intermediate", color: "text-blue-600", categories: ["iot"] },
+  // ── Deployment & Quality ──
+  { name: "Kubernetes", icon: SiKubernetes, color: "text-blue-600", categories: ["deployment"] },
+  { name: "CI/CD", icon: SiGithubactions, color: "text-blue-500", categories: ["deployment"] },
+  { name: "DevOps", icon: FaCog, color: "text-gray-700 dark:text-gray-300", categories: ["deployment"] },
+  { name: "Schema Validation", icon: FaCheckCircle, color: "text-green-600", categories: ["deployment"] },
+  { name: "Performance Optimization", icon: FaTachometerAlt, color: "text-orange-500", categories: ["deployment"] },
 
-  // ── Databases ──
-  { name: "MongoDB", icon: SiMongodb, level: "Advanced", color: "text-green-500", categories: ["databases"] },
-  { name: "PostgreSQL", icon: SiPostgresql, level: "Advanced", color: "text-blue-700", categories: ["databases"] },
-  { name: "MySQL", icon: SiMysql, level: "Advanced", color: "text-orange-600", categories: ["databases"] },
-  { name: "Redis", icon: SiRedis, level: "Intermediate", color: "text-red-600", categories: ["databases"] },
-  { name: "Firebase", icon: SiFirebase, level: "Advanced", color: "text-yellow-500", categories: ["databases", "backend"] },
-
-  // ── DevOps & Tools ──
-  { name: "Git", icon: SiGit, level: "Advanced", color: "text-orange-600", categories: ["devops"] },
-  { name: "GitHub", icon: SiGithub, level: "Advanced", color: "text-gray-800 dark:text-white", categories: ["devops"] },
-  { name: "Docker", icon: SiDocker, level: "Intermediate", color: "text-blue-500", categories: ["devops"] },
-  { name: "Vercel", icon: SiVercel, level: "Advanced", color: "text-black dark:text-white", categories: ["devops"] },
-  { name: "Render.com", icon: SiVercel, level: "Advanced", color: "text-purple-600", categories: ["devops"] },
-  { name: "AWS", icon: SiAmazon, level: "Intermediate", color: "text-orange-500", categories: ["devops"] },
-  { name: "Google Cloud", icon: SiGooglecloud, level: "Beginner", color: "text-blue-500", categories: ["devops"] },
-  { name: "VS Code", icon: VscCode, level: "Expert", color: "text-blue-500", categories: ["devops"] },
-  { name: "Figma", icon: SiFigma, level: "Intermediate", color: "text-purple-500", categories: ["devops"] },
-  { name: "Postman", icon: SiPostman, level: "Advanced", color: "text-orange-500", categories: ["devops"] },
-  { name: "Notion", icon: SiNotion, level: "Advanced", color: "text-gray-800 dark:text-white", categories: ["devops"] },
+  // ── Distributed Engineering ──
+  { name: "Architecture Reviews", icon: FaProjectDiagram, color: "text-purple-600", categories: ["engineering"] },
+  { name: "Distributed Collaboration", icon: FaGlobeAmericas, color: "text-sky-600", categories: ["engineering"] },
+  { name: "Cross-Functional Delivery", icon: FaUsers, color: "text-pink-500", categories: ["engineering"] },
+  { name: "Reliability Ownership", icon: FaShieldAlt, color: "text-emerald-600", categories: ["engineering"] },
+  { name: "Technical Documentation", icon: FaBook, color: "text-amber-700", categories: ["engineering"] },
 ]
 
 /** Total distinct technologies on show (flat skills + cross-cutting languages). */

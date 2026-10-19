@@ -29,8 +29,8 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    // Includes the researcher role, because "who is this person" is the query
-    // being answered when someone searches the name.
+    // Includes the role, because "who is this person" is the query being
+    // answered when someone searches the name.
     default: SITE.title,
     template: `%s | ${PERSON.name}`,
   },
@@ -66,7 +66,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.description,
-    creator: "@mond_valdepenas",
   },
   alternates: {
     canonical: SITE_URL,
@@ -99,11 +98,8 @@ export default function RootLayout({
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
         {/*
-          Site-wide identity as one connected @graph — person, site, and
-          publication, linked by @id. This replaces three standalone blocks that
-          each declared their own unlinked copy of the Person, which read as
-          several vaguely-described entities rather than one well-described one.
-          Page-level nodes are emitted by the pages themselves.
+          Site-wide identity as one connected @graph — person and site, linked
+          by @id. Page-level nodes are emitted by the pages themselves.
         */}
         <script
           type="application/ld+json"

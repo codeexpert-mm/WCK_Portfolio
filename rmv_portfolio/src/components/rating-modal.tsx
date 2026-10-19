@@ -13,7 +13,9 @@ import {
 import { Button } from "@/components/ui/button"
 import { RatingModalProps } from "@/app/interface/rating"
 
-const PORTFOLIO_REPO_URL = "https://github.com/RMV-Coder/RMV_Portfolio"
+// GitHub repo of this portfolio, for the "star this repo" button shown after
+// rating. The button is hidden while this is empty.
+const PORTFOLIO_REPO_URL = ""
 
 const ratingCategories = [
   { name: 'uiux', label: 'UI/UX Design', description: 'Visual design and user experience' },
@@ -151,21 +153,25 @@ export function RatingModal({ open, onOpenChange }: RatingModalProps) {
             <p className="text-muted-foreground">
               Your rating has been submitted successfully. I appreciate your feedback!
             </p>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Enjoyed the portfolio? A star on GitHub means a lot!
-            </p>
+            {PORTFOLIO_REPO_URL && (
+              <p className="mt-6 text-sm text-muted-foreground">
+                Enjoyed the portfolio? A star on GitHub means a lot!
+              </p>
+            )}
             <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-2">
-              <Button asChild>
-                <a
-                  href={PORTFOLIO_REPO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="w-4 h-4 mr-2" />
-                  Star this repo
-                  <Star className="w-4 h-4 ml-2 fill-yellow-400 text-yellow-400" />
-                </a>
-              </Button>
+              {PORTFOLIO_REPO_URL && (
+                <Button asChild>
+                  <a
+                    href={PORTFOLIO_REPO_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="w-4 h-4 mr-2" />
+                    Star this repo
+                    <Star className="w-4 h-4 ml-2 fill-yellow-400 text-yellow-400" />
+                  </a>
+                </Button>
+              )}
               <Button
                 type="button"
                 variant="outline"

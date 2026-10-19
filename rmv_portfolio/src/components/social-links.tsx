@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import { trackSocialClick } from "@/lib/analytics"
+import { PERSON, PROFILES } from "@/lib/site"
 
 interface SocialLink {
   name: string
@@ -12,36 +13,37 @@ interface SocialLink {
   color: string
 }
 
+// Profiles left empty in lib/site are skipped.
 const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
-    href: "https://github.com/RMV-Coder",
+    href: PROFILES.github,
     icon: <Github className="w-5 h-5" />,
     color: "hover:text-gray-900 dark:hover:text-white"
   },
   {
-    name: "LinkedIn", 
-    href: "https://linkedin.com/in/raymond-mv002/",
+    name: "LinkedIn",
+    href: PROFILES.linkedin,
     icon: <Linkedin className="w-5 h-5" />,
     color: "hover:text-blue-600"
   },
   {
     name: "Email",
-    href: "mailto:raymondvaldepenas.dev@gmail.com",
+    href: `mailto:${PERSON.email}`,
     icon: <Mail className="w-5 h-5" />,
     color: "hover:text-red-500"
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/mond_valdepenas",
+    href: PROFILES.x,
     icon: <Twitter className="w-5 h-5" />,
     color: "hover:text-blue-400"
   }
-]
+].filter((link) => Boolean(link.href))
 
 export function SocialLinks() {
   return (
-    <motion.div 
+    <motion.div
       className="flex items-center justify-center space-x-6 mt-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

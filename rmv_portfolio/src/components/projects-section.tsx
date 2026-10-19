@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import type { EnhancedProject } from "@/app/interface/github"
+import { PROFILES } from "@/lib/site"
 
 // Fetch through the server-side proxy — one cached upstream call serves all
 // visitors, so browser-side GitHub rate limits can't break this section.
@@ -294,7 +295,7 @@ export function ProjectsSection() {
             {/* GitHub Link */}
             <Parallax speed={0.2} className="text-center mt-12">
               <a
-                href="https://github.com/RMV-Coder"
+                href={PROFILES.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"

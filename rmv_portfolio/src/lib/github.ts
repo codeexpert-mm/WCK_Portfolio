@@ -7,9 +7,9 @@ import type {
   ProjectMetadata
 } from '@/app/interface/github'
 import { LANGUAGE_COLORS } from '@/lib/github-format'
+import { GITHUB_USERNAME } from '@/lib/site'
 
 const GITHUB_API_BASE = 'https://api.github.com'
-const GITHUB_USERNAME = 'RMV-Coder'
 
 // Optional server-side token (never NEXT_PUBLIC_*). Without it the server's
 // quota is 60 req/h — fine behind Next's data cache; with it, 5,000 req/h.
@@ -51,49 +51,14 @@ async function githubFetch<T>(path: string): Promise<T> {
   return response.json() as Promise<T>
 }
 
-// Project metadata (customize for your projects)
-const PROJECT_METADATA: Record<string, ProjectMetadata> = {
-  'OmniGraph': {
-    id: 1,
-    featured: true,
-    status: 'maintained',
-    category: 'open-source',
-    techStack: {
-      frontend: [],
-      backend: ['Node.js', 'TypeScript'],
-      database: [],
-      tools: ['npm', 'AST Parsing']
-    },
-    demoUrl: 'https://www.npmjs.com/package/@zoldia/omnigraph',
-    priority: 1,
-    highlights: [
-      'Published on npm as @zoldia/omnigraph',
-      'Multi-language AST analysis',
-      'Interactive dependency graph'
-    ]
-  },
-  'LocalPass': {
-    id: 2,
-    featured: true,
-    status: 'ongoing',
-    category: 'open-source',
-    techStack: {
-      frontend: ['Svelte', 'TypeScript'],
-      backend: ['Rust'],
-      database: [],
-      tools: ['GitHub']
-    },
-    priority: 2,
-    highlights: [
-      'Fully local — no cloud',
-      'Password & secrets manager',
-      'Developer .env workflow focus'
-    ]
-  },
-  // Add more project metadata as needed
-}
+// Project metadata, keyed by repository name (customize for your projects).
+// Matching repos get featured placement, highlights, and a demo link.
+const PROJECT_METADATA: Record<string, ProjectMetadata> = {}
 
 async function fetchUserRepositories(): Promise<GitHubRepository[]> {
+  // No GitHub account configured in lib/site — nothing to list.
+  if (!GITHUB_USERNAME) return []
+
   const repos = await githubFetch<GitHubRepository[]>(
     `/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated&direction=desc`
   )

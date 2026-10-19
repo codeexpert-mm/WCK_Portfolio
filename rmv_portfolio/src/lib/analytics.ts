@@ -2,12 +2,13 @@
 // Uses sendGAEvent from @next/third-parties/google
 
 import { sendGAEvent } from '@next/third-parties/google'
+import { RESUME_FILE_NAME } from '@/constants/resume'
 
 // Track resume download
 export const trackResumeDownload = async () => {
   // Track in Google Analytics
   sendGAEvent('event', 'file_download', {
-    file_name: 'Raymond_Valdepenas_Resume.pdf',
+    file_name: RESUME_FILE_NAME,
     file_extension: 'pdf',
     event_category: 'engagement',
     event_label: 'resume_download'

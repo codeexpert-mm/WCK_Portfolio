@@ -9,8 +9,8 @@ import {
   categories,
   totalTechnologies,
   type CategoryId,
-  type SkillLevel,
 } from "@/data/skills"
+import { EXPERIENCE, YEARS_OF_EXPERIENCE } from "@/data/resume"
 
 type TabId = "all" | CategoryId
 
@@ -19,19 +19,10 @@ const tabs: { id: TabId; label: string }[] = [
   ...categories.map((c) => ({ id: c.id as TabId, label: c.label })),
 ]
 
-// Small colored dot conveying proficiency without the old bulky progress bars.
-const levelDot: Record<SkillLevel, string> = {
-  Beginner: "bg-muted-foreground/50",
-  Intermediate: "bg-sky-500",
-  Advanced: "bg-emerald-500",
-  Expert: "bg-primary",
-}
-
-function SkillChip({ name, icon: Icon, color, level }: {
+function SkillChip({ name, icon: Icon, color }: {
   name: string
   icon: React.ComponentType<{ className?: string }>
   color: string
-  level: SkillLevel
 }) {
   return (
     <motion.div
@@ -47,11 +38,6 @@ function SkillChip({ name, icon: Icon, color, level }: {
       <span className="text-sm font-medium text-foreground whitespace-nowrap group-hover:text-primary transition-colors">
         {name}
       </span>
-      <span
-        className={`w-2 h-2 rounded-full shrink-0 ${levelDot[level]}`}
-        title={level}
-        aria-label={level}
-      />
     </motion.div>
   )
 }
@@ -161,7 +147,6 @@ export function SkillsSection() {
                 name={skill.name}
                 icon={skill.icon}
                 color={skill.color}
-                level={skill.level}
               />
             ))}
           </AnimatePresence>
@@ -174,16 +159,16 @@ export function SkillsSection() {
             <p className="text-muted-foreground">Technologies</p>
           </div>
           <div className="p-6 bg-card rounded-lg border border-border">
-            <div className="text-3xl font-bold text-primary mb-2">5+</div>
+            <div className="text-3xl font-bold text-primary mb-2">{YEARS_OF_EXPERIENCE}</div>
             <p className="text-muted-foreground">Years Experience</p>
           </div>
           <div className="p-6 bg-card rounded-lg border border-border">
-            <div className="text-3xl font-bold text-primary mb-2">50+</div>
-            <p className="text-muted-foreground">Projects Completed</p>
+            <div className="text-3xl font-bold text-primary mb-2">{EXPERIENCE.length}</div>
+            <p className="text-muted-foreground">Companies</p>
           </div>
           <div className="p-6 bg-card rounded-lg border border-border">
-            <div className="text-3xl font-bold text-primary mb-2">10+</div>
-            <p className="text-muted-foreground">Happy Clients</p>
+            <div className="text-3xl font-bold text-primary mb-2">3.2M</div>
+            <p className="text-muted-foreground">Daily Requests Served</p>
           </div>
         </Parallax>
       </div>

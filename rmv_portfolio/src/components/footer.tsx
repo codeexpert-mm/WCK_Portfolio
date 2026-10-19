@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { RatingModal } from "@/components/rating-modal"
+import { PERSON } from "@/lib/site"
 
 export function Footer() {
   const [showRatingModal, setShowRatingModal] = React.useState(false)
@@ -32,7 +33,7 @@ export function Footer() {
               {/* Copyright */}
               <div className="text-center sm:text-left">
                 <p>
-                  © {currentYear} Raymond Valdepeñas. All rights reserved.
+                  © {currentYear} {PERSON.name}. All rights reserved.
                 </p>
               </div>
 

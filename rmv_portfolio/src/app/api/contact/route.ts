@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import { contactFormSchema } from '@/lib/validations'
 import { escapeHtml } from '@/lib/utils'
+import { PERSON, SITE_URL } from '@/lib/site'
 
 // Rate limiting storage (in production, use Redis or database)
 const rateLimit = new Map<string, { count: number; resetTime: number }>()
@@ -161,7 +162,7 @@ Sent from portfolio contact form at ${new Date().toLocaleString()}
     // Optional: Send auto-reply to the sender
     if (process.env.SEND_AUTO_REPLY === 'true') {
       await transporter.sendMail({
-        from: `"Raymond Valdepeñas" <${process.env.SMTP_USER}>`,
+        from: `"${PERSON.name}" <${process.env.SMTP_USER}>`,
         to: validatedData.email,
         subject: 'Thank you for your message!',
         text: `
@@ -170,11 +171,10 @@ Hi ${validatedData.name},
 Thank you for reaching out! I've received your message and will get back to you as soon as possible.
 
 Best regards,
-Raymond Valdepeñas
-Full Stack Developer
+${PERSON.name}
+${PERSON.jobTitle}
 
-Portfolio: https://raymondvaldepenas-dev.vercel.app
-GitHub: https://github.com/RMV-Coder
+Portfolio: ${SITE_URL}
 
 ---
 This is an automated response from my portfolio contact form.
@@ -211,11 +211,10 @@ This is an automated response from my portfolio contact form.
                   <p>Thank you for reaching out! I've received your message and will get back to you as soon as possible.</p>
                   
                   <div class="signature">
-                    <div class="signature-name">Raymond Valdepeñas</div>
-                    <div class="signature-title">Full Stack Developer</div>
+                    <div class="signature-name">${PERSON.name}</div>
+                    <div class="signature-title">${PERSON.jobTitle}</div>
                     <div class="signature-links">
-                      <a href="https://raymondvaldepenas-dev.vercel.app" target="_blank">Portfolio</a>
-                      <a href="https://github.com/RMV-Coder" target="_blank">GitHub</a>
+                      <a href="${SITE_URL}" target="_blank">Portfolio</a>
                     </div>
                     <div class="automated-note">
                       This is an automated response from my portfolio contact form.

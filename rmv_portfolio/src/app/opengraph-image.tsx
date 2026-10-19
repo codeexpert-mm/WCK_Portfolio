@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { PERSON, PROFILES } from '@/lib/site'
+import { PERSON } from '@/lib/site'
 
 /**
  * Generated OpenGraph card.
@@ -11,7 +11,7 @@ import { PERSON, PROFILES } from '@/lib/site'
  * again, and keeps the text in sync with the site's own copy.
  */
 
-export const alt = `${PERSON.name} — Full Stack Developer and AIoT Researcher`
+export const alt = `${PERSON.name} — ${PERSON.jobTitle}`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -57,7 +57,7 @@ export default async function Image() {
             lineHeight: 1.3,
           }}
         >
-          Full Stack Developer · AIoT Researcher
+          Full Stack Engineer · Go, React & AI Systems
         </div>
 
         <div
@@ -68,7 +68,7 @@ export default async function Image() {
             color: '#64748b',
           }}
         >
-          {PROFILES.github.replace('https://', '')} · {PERSON.locality}, {PERSON.country}
+          {PERSON.email} · {PERSON.locality}, {PERSON.region}
         </div>
       </div>
     ),

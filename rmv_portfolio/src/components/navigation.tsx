@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { ResumeUnavailableModal } from "@/components/resume-unavailable-modal"
 import { downloadResume } from "@/lib/resume"
 import { scrollTo } from "@/lib/smooth-scroll"
+import { GITHUB_USERNAME, PERSON } from "@/lib/site"
 
 interface NavItem {
   name: string
@@ -18,11 +19,22 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
-  { name: "Research", href: "#research" },
-  { name: "Projects", href: "#projects" },
+  // The Projects section only renders when a GitHub account is configured.
+  ...(GITHUB_USERNAME ? [{ name: "Projects", href: "#projects" }] : []),
   { name: "Contact", href: "#contact" },
 ]
+
+/** Idle time after a nav click's smooth scroll before the scroll spy resumes. */
+const SCROLL_SETTLE_MS = 200
+
+/** Monogram for the logo, e.g. "William Christian Kolega" → "WCK". */
+const MONOGRAM = PERSON.name
+  .split(/\s+/)
+  .map((part) => part[0])
+  .join("")
+  .toUpperCase()
 
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -30,8 +42,24 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [showResumeModal, setShowResumeModal] = React.useState(false)
 
+  // While a nav click is smooth-scrolling, the scroll spy is paused so the
+  // sections passed on the way don't flash in the nav. It resumes once the
+  // scroll has been idle for SCROLL_SETTLE_MS.
+  const clickLockRef = React.useRef(false)
+  const settleTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const releaseLockWhenSettled = React.useCallback(() => {
+    if (settleTimerRef.current) clearTimeout(settleTimerRef.current)
+    settleTimerRef.current = setTimeout(() => {
+      clickLockRef.current = false
+    }, SCROLL_SETTLE_MS)
+  }, [])
+
   // Smooth scroll to section (via Lenis when available)
   const scrollToSection = (href: string) => {
+    setActiveSection(href.substring(1))
+    clickLockRef.current = true
+    releaseLockWhenSettled()
     scrollTo(href)
     setIsOpen(false)
   }
@@ -42,23 +70,40 @@ export function Navigation() {
       const scrollPosition = window.scrollY
       setIsScrolled(scrollPosition > 50)
 
-      // Update active section based on scroll position
+      if (clickLockRef.current) {
+        releaseLockWhenSettled()
+        return
+      }
+
+      // Sections overlap as they slide over each other, so instead of looking
+      // for the one spanning a fixed line, take the last section whose top has
+      // passed the activation line.
       const sections = navItems.map(item => item.href.substring(1))
+      const activationLine = window.innerHeight * 0.4
+      let current = sections[0]
       for (const section of sections) {
         const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section)
-            break
-          }
+        if (element && element.getBoundingClientRect().top <= activationLine) {
+          current = section
         }
       }
+
+      // The last section can be too short to ever reach the line, so the
+      // bottom of the page always selects it.
+      const atBottom =
+        window.innerHeight + scrollPosition >= document.documentElement.scrollHeight - 2
+      if (atBottom) current = sections[sections.length - 1]
+
+      setActiveSection(current)
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (settleTimerRef.current) clearTimeout(settleTimerRef.current)
+    }
+  }, [releaseLockWhenSettled])
 
   return (
     <nav 
@@ -77,7 +122,7 @@ export function Navigation() {
               onClick={(e) => { e.preventDefault(); scrollToSection("#home"); }}
               className="text-xl font-bold text-foreground hover:text-primary transition-colors"
             >
-              RMV
+              {MONOGRAM}
             </Link>
           </div>
 

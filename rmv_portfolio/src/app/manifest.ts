@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next'
+import { PERSON, SITE } from '@/lib/site'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Raymond Valdepeñas - Full Stack Developer',
-    short_name: 'RMV Portfolio',
-    description: 'Portfolio website of Raymond Valdepeñas, a passionate Full Stack Developer from the Philippines.',
+    name: `${PERSON.name} - ${PERSON.jobTitle}`,
+    short_name: `${PERSON.givenName} ${PERSON.familyName}`,
+    description: SITE.description,
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

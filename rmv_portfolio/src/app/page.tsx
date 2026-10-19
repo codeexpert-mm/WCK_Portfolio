@@ -12,13 +12,13 @@ import { AnimatedBackground } from "@/components/animated-background"
 import { SocialLinks } from "@/components/social-links"
 import { ScrollIndicator } from "@/components/scroll-indicator"
 import { PerformanceMonitor } from "@/components/performance-monitor"
-import { CustomCursor } from "@/components/custom-cursor"
 import { InteractiveBackground } from "@/components/interactive-background"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { scrollTo } from "@/lib/smooth-scroll"
 import { StackReveal } from "@/components/motion/stack-reveal"
 import { Magnetic } from "@/components/motion/magnetic"
 import { homePageGraph } from "@/lib/structured-data"
+import { GITHUB_USERNAME, PERSON } from "@/lib/site"
 
 // Dynamic imports for better code splitting
 const SkillsSection = dynamic(() => import("@/components/skills-section").then(mod => ({ default: mod.SkillsSection })), {
@@ -45,7 +45,7 @@ const ContactSection = dynamic(() => import("@/components/contact-section").then
   ssr: true
 })
 
-const ResearchSection = dynamic(() => import("@/components/research-section").then(mod => ({ default: mod.ResearchSection })), {
+const ExperienceSection = dynamic(() => import("@/components/experience-section").then(mod => ({ default: mod.ExperienceSection })), {
   loading: () => <div className="py-20 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>,
   ssr: true
 })
@@ -67,11 +67,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/*
-        ProfilePage node for this URL specifically — it names Raymond as the
-        page's `mainEntity`, which is the question an AI overview is answering
-        when someone searches his name. Emitted here rather than in the layout
-        so it does not follow the visitor onto /research, which describes a
-        different resource.
+        ProfilePage node for this URL specifically — it names the site owner as
+        the page's `mainEntity`, which is the question an AI overview is
+        answering when someone searches the name.
       */}
       <script
         type="application/ld+json"
@@ -80,7 +78,6 @@ export default function Home() {
 
       <SmoothScroll />
       <InteractiveBackground />
-      <CustomCursor />
       <PerformanceMonitor />
       <Navigation />
 
@@ -106,7 +103,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <TypographyLead as="h1" text={"RAYMOND VALDEPEÑAS,"} />
+            <TypographyLead as="h1" text={`${PERSON.name.toUpperCase()},`} />
           </motion.div>
           
           <motion.div
@@ -116,13 +113,11 @@ export default function Home() {
           >
             <TypingAnimation 
               texts={[
-                "FULLSTACK DEVELOPER",
-                "SOFTWARE DEVELOPER",
-                "AI/ML ENGINEER", 
-                "IOT DEVELOPER",
-                "DATA SCIENTIST",
-                "DATABASE ARCHITECT",
-                "AUTOMATION SPECIALIST"
+                "FULL STACK ENGINEER",
+                "AI ENGINEER",
+                "GO & gRPC ENGINEER",
+                "REACT DEVELOPER",
+                "SYSTEMS ARCHITECT",
               ]}
               className="scroll-m-20 text-6xl md:text-8xl font-extrabold tracking-tight text-balance bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
               delay={100}
@@ -139,7 +134,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5 }}
           >
-            <TypographyP text={"SPECIALIZING IN INTEGRATING AI AND IOT SYSTEMS WITH EXPERTISE IN DATABASE MANAGEMENT."} />
+            <TypographyP text={"10 YEARS BUILDING GO AND gRPC SERVICES, REACT INTERFACES, AND GUARDED LLM-ASSISTED WORKFLOWS."} />
           </motion.div>
           
           <motion.div 
@@ -153,10 +148,9 @@ export default function Home() {
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors font-medium"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollTo("#projects")}
-                data-cursor="View"
+                onClick={() => scrollTo("#experience")}
               >
-                View Projects
+                View Experience
               </motion.button>
             </Magnetic>
             <Magnetic>
@@ -165,7 +159,6 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollTo("#contact")}
-                data-cursor="Say hi"
               >
                 Contact Me
               </motion.button>
@@ -186,18 +179,21 @@ export default function Home() {
       </StackReveal>
 
       <StackReveal index={2} tone="base">
-        <SkillsSection />
+        <ExperienceSection />
       </StackReveal>
 
       <StackReveal index={3} tone="muted">
-        <ResearchSection />
+        <SkillsSection />
       </StackReveal>
 
-      <StackReveal index={4} tone="base">
-        <ProjectsSection />
-      </StackReveal>
+      {/* Lists the repos of PROFILES.github — hidden until one is set. */}
+      {GITHUB_USERNAME && (
+        <StackReveal index={4} tone="base">
+          <ProjectsSection />
+        </StackReveal>
+      )}
 
-      <StackReveal index={5} tone="muted">
+      <StackReveal index={5} tone={GITHUB_USERNAME ? "muted" : "base"}>
         <ContactSection />
       </StackReveal>
 

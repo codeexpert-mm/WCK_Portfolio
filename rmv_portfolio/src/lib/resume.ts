@@ -1,4 +1,4 @@
-import { RESUME_AVAILABLE } from "@/constants/resume"
+import { RESUME_AVAILABLE, RESUME_FILE_NAME } from "@/constants/resume"
 import { trackResumeDownload } from "@/lib/analytics"
 
 /**
@@ -13,7 +13,7 @@ export async function downloadResume(): Promise<boolean> {
 
   const link = document.createElement("a")
   link.href = "/resume.pdf"
-  link.download = "Raymond_Valdepenas_Resume.pdf"
+  link.download = RESUME_FILE_NAME
   link.target = "_blank"
   document.body.appendChild(link)
   link.click()

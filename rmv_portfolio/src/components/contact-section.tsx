@@ -9,6 +9,14 @@ import { FiMail, FiPhone, FiMapPin, FiSend, FiLoader, FiCheck, FiAlertCircle } f
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { contactFormSchema, type ContactFormData } from "@/lib/validations"
 import { trackContactFormSubmit } from "@/lib/analytics"
+import { PERSON, PROFILES } from "@/lib/site"
+
+// Profiles left empty in lib/site are skipped.
+const socials = [
+  { icon: FaGithub, href: PROFILES.github, label: "GitHub" },
+  { icon: FaLinkedin, href: PROFILES.linkedin, label: "LinkedIn" },
+  { icon: FaTwitter, href: PROFILES.x, label: "Twitter" },
+].filter((social) => Boolean(social.href))
 
 interface FormState {
   status: 'idle' | 'loading' | 'success' | 'error'
@@ -107,7 +115,9 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-muted-foreground">raymondvaldepenas.dev@gmail.com</p>
+                  <a href={`mailto:${PERSON.email}`} className="text-muted-foreground hover:text-primary transition-colors">
+                    {PERSON.email}
+                  </a>
                 </div>
               </motion.div>
 
@@ -120,7 +130,9 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="font-medium">Phone</p>
-                  <p className="text-muted-foreground">+63 966 732 4567</p>
+                  <a href={`tel:${PERSON.telephone}`} className="text-muted-foreground hover:text-primary transition-colors">
+                    {PERSON.telephoneDisplay}
+                  </a>
                 </div>
               </motion.div>
 
@@ -133,20 +145,17 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="font-medium">Location</p>
-                  <p className="text-muted-foreground">Tangub City, Philippines</p>
+                  <p className="text-muted-foreground">{PERSON.locality}, {PERSON.region}</p>
                 </div>
               </motion.div>
             </div>
 
             {/* Social Links */}
+            {socials.length > 0 && (
             <div>
               <h4 className="font-medium mb-4">Follow Me</h4>
               <div className="flex space-x-4">
-                {[
-                  { icon: FaGithub, href: "https://github.com/RMV-Coder", label: "GitHub" },
-                  { icon: FaLinkedin, href: "https://linkedin.com/in/raymond-mv002/", label: "LinkedIn" },
-                  { icon: FaTwitter, href: "https://twitter.com/mond_valdepenas", label: "Twitter" },
-                ].map((social) => (
+                {socials.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
@@ -162,6 +171,7 @@ export function ContactSection() {
                 ))}
               </div>
             </div>
+            )}
           </Parallax>
 
           {/* Contact Form */}

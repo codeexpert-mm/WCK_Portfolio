@@ -10,7 +10,7 @@ import { SITE_URL, absoluteUrl } from '@/lib/site'
  * one-line edit against a list that is already correct and complete.
  *
  * Access is deliberately open: an AI overview that cannot fetch the site will
- * still answer questions about Raymond, just from third-party sources it can
+ * still answer questions about the site owner, just from third-party sources it can
  * reach. Blocking these agents does not prevent the summary, it only removes
  * the authoritative source from it.
  */

@@ -103,7 +103,11 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <TypographyLead as="h1" text={`${PERSON.name.toUpperCase()},`} />
+            <TypographyLead
+              as="h1"
+              text={`${PERSON.name.toUpperCase()},`}
+              className="font-bold tracking-wide text-sky-600 dark:text-sky-300 dark:[text-shadow:0_0_6px_rgb(125_211_252/0.9),0_0_18px_rgb(56_189_248/0.7),0_0_36px_rgb(14_165_233/0.5)]"
+            />
           </motion.div>
           
           <motion.div

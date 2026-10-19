@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { Github, Linkedin, Twitter } from "lucide-react"
 import { trackSocialClick } from "@/lib/analytics"
-import { PERSON, PROFILES } from "@/lib/site"
+import { PROFILES } from "@/lib/site"
 
 interface SocialLink {
   name: string
@@ -28,12 +28,6 @@ const socialLinks: SocialLink[] = [
     color: "hover:text-blue-600"
   },
   {
-    name: "Email",
-    href: `mailto:${PERSON.email}`,
-    icon: <Mail className="w-5 h-5" />,
-    color: "hover:text-red-500"
-  },
-  {
     name: "Twitter",
     href: PROFILES.x,
     icon: <Twitter className="w-5 h-5" />,
@@ -42,6 +36,8 @@ const socialLinks: SocialLink[] = [
 ].filter((link) => Boolean(link.href))
 
 export function SocialLinks() {
+  if (socialLinks.length === 0) return null
+
   return (
     <motion.div
       className="flex items-center justify-center space-x-6 mt-8"

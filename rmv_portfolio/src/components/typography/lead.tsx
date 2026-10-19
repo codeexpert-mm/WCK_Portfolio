@@ -9,11 +9,13 @@ interface LeadProps extends typography {
    * need not be its largest text.
    */
   as?: "p" | "h1"
+  /** Replaces the default muted color/weight, e.g. to spotlight the hero name. */
+  className?: string
 }
 
-const TypographyLead:React.FC<LeadProps> = ({text, as: Tag = "p"}) => {
+const TypographyLead:React.FC<LeadProps> = ({text, as: Tag = "p", className = "text-muted-foreground"}) => {
   return (
-    <Tag className="text-muted-foreground text-2xl">
+    <Tag className={`text-2xl ${className}`}>
       {text}
     </Tag>
   )

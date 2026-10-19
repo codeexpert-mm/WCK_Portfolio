@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import nodemailer from 'nodemailer';
-import prisma from '@/lib/prisma';
+import { getPrisma } from '@/lib/prisma';
 import { escapeHtml } from '@/lib/utils';
 
 const RatingSchema = z.object({
@@ -209,7 +209,7 @@ export async function POST(req: NextRequest) {
 
     // Store in Prisma database
     try {
-      await prisma.portfolioRating.create({
+      await getPrisma().portfolioRating.create({
         data: {
           uiux: data.categories.uiux,
           performance: data.categories.performance,

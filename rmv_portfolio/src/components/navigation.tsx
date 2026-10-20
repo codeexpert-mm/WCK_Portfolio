@@ -21,6 +21,7 @@ const navItems: NavItem[] = [
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
+  { name: "Work", href: "#work" },
   // The Projects section only renders when a GitHub account is configured.
   ...(GITHUB_USERNAME ? [{ name: "Projects", href: "#projects" }] : []),
   { name: "Contact", href: "#contact" },

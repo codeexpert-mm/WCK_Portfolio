@@ -110,7 +110,7 @@ export function ProjectsSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <Parallax speed={0.25}>
-            <h2 className="p-4 text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h2 className="p-4 text-4xl md:text-5xl mb-4 section-title">
               Featured Projects
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">

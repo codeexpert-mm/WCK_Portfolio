@@ -31,6 +31,11 @@ const AboutSection = dynamic(() => import("@/components/about-section").then(mod
   ssr: true
 })
 
+const SelectedWorkSection = dynamic(() => import("@/components/selected-work-section").then(mod => ({ default: mod.SelectedWorkSection })), {
+  loading: () => <div className="py-20 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>,
+  ssr: true
+})
+
 // The repo list is fetched client-side via SWR, but the section itself renders
 // on the server. With ssr:false the entire section — heading, description, and
 // the link to GitHub — was absent from the served HTML, so crawlers saw no
@@ -123,7 +128,7 @@ export default function Home() {
                 "REACT DEVELOPER",
                 "SYSTEMS ARCHITECT",
               ]}
-              className="scroll-m-20 text-6xl md:text-8xl font-extrabold tracking-tight text-balance bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+              className="scroll-m-20 text-6xl md:text-8xl text-balance section-title"
               delay={100}
               typingSpeed={100}
               deletingSpeed={40}
@@ -190,14 +195,18 @@ export default function Home() {
         <SkillsSection />
       </StackReveal>
 
+      <StackReveal index={4} tone="base">
+        <SelectedWorkSection />
+      </StackReveal>
+
       {/* Lists the repos of PROFILES.github — hidden until one is set. */}
       {GITHUB_USERNAME && (
-        <StackReveal index={4} tone="base">
+        <StackReveal index={5} tone="muted">
           <ProjectsSection />
         </StackReveal>
       )}
 
-      <StackReveal index={5} tone={GITHUB_USERNAME ? "muted" : "base"}>
+      <StackReveal index={6} tone={GITHUB_USERNAME ? "base" : "muted"}>
         <ContactSection />
       </StackReveal>
 

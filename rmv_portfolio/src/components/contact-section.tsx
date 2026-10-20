@@ -86,7 +86,7 @@ export function ContactSection() {
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-4">
         <Parallax speed={0.25} className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
+          <h2 className="p-4 text-4xl md:text-5xl mb-4 section-title">Get In Touch</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind or just want to say hello? I&apos;d love to hear from you.
             Let&apos;s create something amazing together!

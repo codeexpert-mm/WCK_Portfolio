@@ -70,7 +70,7 @@ export function SkillsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <Parallax speed={0.25} className="text-center mb-12">
-          <h2 className="p-4 text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 className="p-4 text-4xl md:text-5xl mb-4 section-title">
             Skills &amp; Technologies
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

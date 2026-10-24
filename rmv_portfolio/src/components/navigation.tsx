@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
 /** Idle time after a nav click's smooth scroll before the scroll spy resumes. */
 const SCROLL_SETTLE_MS = 200
 
-/** Monogram for the logo, e.g. "William Christian Kolega" → "WCK". */
+/** Monogram for the logo, e.g. "Maxwell Mears" → "MM". */
 const MONOGRAM = PERSON.name
   .split(/\s+/)
   .map((part) => part[0])

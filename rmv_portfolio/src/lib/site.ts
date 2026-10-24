@@ -1,6 +1,6 @@
 /**
  * Single source of truth for site identity and the canonical facts about
- * William Christian Kolega.
+ * Maxwell Mears.
  *
  * Search engines and AI answer engines resolve a person into a knowledge-graph
  * entity by cross-referencing the identifiers a site asserts about itself. When
@@ -27,7 +27,7 @@ export const absoluteUrl = (path = '') =>
 /**
  * Verified profile URLs, used as schema.org `sameAs` and for the social links.
  *
- * Every URL here must resolve to a live profile actually owned by William. A
+ * Every URL here must resolve to a live profile actually owned by Maxwell. A
  * dead or wrong `sameAs` is worse than none: it tells the crawler the site's
  * self-description is unreliable. Empty values are filtered out everywhere, so
  * adding a profile is a one-line change once it exists.
@@ -48,14 +48,17 @@ export const GITHUB_USERNAME = PROFILES.github.replace(/^https?:\/\/github\.com\
 export const SAME_AS: string[] = Object.values(PROFILES).filter(Boolean)
 
 export const PERSON = {
-  name: 'William Christian Kolega',
-  givenName: 'William',
-  familyName: 'Kolega',
+  name: 'Maxwell Mears',
+  givenName: 'Maxwell',
+  familyName: 'Mears',
   jobTitle: 'Senior Full Stack AI Engineer',
-  email: 'billkolega@outlook.com',
-  telephone: '+16562215249',
-  /** Display form of the phone number. */
-  telephoneDisplay: '+1 (656) 221-5249',
+  email: 'maxwell.mears.91@outlook.com',
+  /** WhatsApp number in E.164 (not a cell/SMS line). */
+  telephone: '+13852435401',
+  /** Display form of the WhatsApp number. */
+  telephoneDisplay: '+1 (385) 243-5401',
+  /** Deep link that opens a chat in WhatsApp. */
+  whatsappUrl: 'https://wa.me/13852435401',
   locality: 'Tampa',
   region: 'FL',
   country: 'United States',
@@ -64,14 +67,14 @@ export const PERSON = {
 } as const
 
 export const SITE = {
-  name: 'William Christian Kolega Portfolio',
+  name: 'Maxwell Mears Portfolio',
   title: `${PERSON.name} — Senior Full Stack AI Engineer`,
   /**
    * Kept under ~155 characters so Google renders it whole rather than
    * synthesising a replacement from page text.
    */
   description:
-    'William Christian Kolega is a full-stack engineer in Tampa, FL with 10 years building Go/gRPC services, React interfaces, and LLM-assisted tools.',
+    'Maxwell Mears is a full-stack engineer in Tampa, FL with 10 years building Go/gRPC services, React interfaces, and LLM-assisted tools.',
   ogImage: absoluteUrl('/opengraph-image'),
   locale: 'en_US',
 } as const

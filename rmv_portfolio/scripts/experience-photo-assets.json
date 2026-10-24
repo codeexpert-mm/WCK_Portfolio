@@ -1,0 +1,50 @@
+[
+  {
+    "key": "sourcegraph",
+    "filename": "photo-ai-office.jpg",
+    "alt": "Developers collaborating on AI software beside large code displays in a modern office",
+    "theme": "AI agents & LLM tooling",
+    "accent": "from-black/50 via-violet-500/15 to-transparent",
+    "page": "https://www.magnific.com/free-photo/system-developers-analyzing-code-wall-screen-tv-looking-errors-while-team-coders-collaborate-artificial-intelligence-project-programmers-working-together-machine-learning-software_26367398.htm",
+    "author": "Freepik",
+    "title": "System developers collaborating on an AI project",
+    "cdn": "https://img.magnific.com/free-photo/system-developers-analyzing-code-wall-screen-tv-looking-errors-while-team-coders-collaborate-artificial-intelligence-project-programmers-working-together-machine-learning-software_482257-41819.jpg?w=1400",
+    "query": "artificial intelligence software developers coding office photo"
+  },
+  {
+    "key": "grafana",
+    "filename": "photo-observability.jpg",
+    "alt": "Engineering team reviewing monitoring dashboards and code on large office screens",
+    "theme": "Dashboards & observability",
+    "accent": "from-black/50 via-sky-500/15 to-transparent",
+    "page": "https://www.magnific.com/free-photo/team-database-admins-analyzing-source-code-wall-screen-tv-comparing-errors-using-digital-tablet-busy-server-room-two-cloud-programers-debugging-algorithm-software-innovation-office_27624935.htm",
+    "author": "Freepik",
+    "title": "Team reviewing analytics screens in a modern engineering office",
+    "cdn": "https://img.magnific.com/free-photo/team-database-admins-analyzing-source-code-wall-screen-tv-comparing-errors-using-digital-tablet-busy-server-room-two-cloud-programers-debugging-algorithm-software-innovation-office_482257-43976.jpg?w=1400",
+    "query": "monitoring dashboard telemetry analytics office photo"
+  },
+  {
+    "key": "dell",
+    "filename": "photo-datacenter.jpg",
+    "alt": "IT professional working among server racks in a data center",
+    "theme": "Enterprise systems & infrastructure",
+    "accent": "from-black/55 via-emerald-500/15 to-transparent",
+    "page": "https://www.magnific.com/free-photo/it-professionals-updating-server-room-systems-using-tablet_482257-106639.htm",
+    "author": "Freepik",
+    "title": "IT professional updating systems in a server room",
+    "cdn": "https://img.magnific.com/free-photo/it-professionals-updating-server-room-systems-using-tablet_482257-106639.jpg?w=1400",
+    "query": "data center server room engineer enterprise photo"
+  },
+  {
+    "key": "education",
+    "filename": "photo-university.jpg",
+    "alt": "University students studying together in a campus library",
+    "theme": "Computer science education",
+    "accent": "from-black/50 via-amber-500/15 to-transparent",
+    "page": "https://www.magnific.com/free-photo/classmates-studying-together-library_329181-19495.htm",
+    "author": "Freepik",
+    "title": "Classmates studying together at the university library",
+    "cdn": "https://img.magnific.com/free-photo/classmates-studying-together-library_329181-19495.jpg?w=1400",
+    "query": "university students campus library studying photo"
+  }
+]

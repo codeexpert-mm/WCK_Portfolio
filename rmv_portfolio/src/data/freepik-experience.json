@@ -1,0 +1,62 @@
+[
+  {
+    "key": "sourcegraph",
+    "src": "/experience/photo-ai-office.jpg",
+    "alt": "Developers collaborating on AI software beside large code displays in a modern office",
+    "theme": "AI agents & LLM tooling",
+    "accent": "from-black/50 via-violet-500/15 to-transparent",
+    "kind": "photo",
+    "attribution": {
+      "author": "Freepik",
+      "title": "System developers collaborating on an AI project",
+      "url": "https://www.magnific.com/free-photo/system-developers-analyzing-code-wall-screen-tv-looking-errors-while-team-coders-collaborate-artificial-intelligence-project-programmers-working-together-machine-learning-software_26367398.htm",
+      "provider": "Magnific",
+      "providerUrl": "https://www.magnific.com"
+    }
+  },
+  {
+    "key": "grafana",
+    "src": "/experience/photo-observability.jpg",
+    "alt": "Engineering team reviewing monitoring dashboards and code on large office screens",
+    "theme": "Dashboards & observability",
+    "accent": "from-black/50 via-sky-500/15 to-transparent",
+    "kind": "photo",
+    "attribution": {
+      "author": "Freepik",
+      "title": "Team reviewing analytics screens in a modern engineering office",
+      "url": "https://www.magnific.com/free-photo/team-database-admins-analyzing-source-code-wall-screen-tv-comparing-errors-using-digital-tablet-busy-server-room-two-cloud-programers-debugging-algorithm-software-innovation-office_27624935.htm",
+      "provider": "Magnific",
+      "providerUrl": "https://www.magnific.com"
+    }
+  },
+  {
+    "key": "dell",
+    "src": "/experience/photo-datacenter.jpg",
+    "alt": "IT professional working among server racks in a data center",
+    "theme": "Enterprise systems & infrastructure",
+    "accent": "from-black/55 via-emerald-500/15 to-transparent",
+    "kind": "photo",
+    "attribution": {
+      "author": "Freepik",
+      "title": "IT professional updating systems in a server room",
+      "url": "https://www.magnific.com/free-photo/it-professionals-updating-server-room-systems-using-tablet_482257-106639.htm",
+      "provider": "Magnific",
+      "providerUrl": "https://www.magnific.com"
+    }
+  },
+  {
+    "key": "education",
+    "src": "/experience/photo-university.jpg",
+    "alt": "University students studying together in a campus library",
+    "theme": "Computer science education",
+    "accent": "from-black/50 via-amber-500/15 to-transparent",
+    "kind": "photo",
+    "attribution": {
+      "author": "Freepik",
+      "title": "Classmates studying together at the university library",
+      "url": "https://www.magnific.com/free-photo/classmates-studying-together-library_329181-19495.htm",
+      "provider": "Magnific",
+      "providerUrl": "https://www.magnific.com"
+    }
+  }
+]

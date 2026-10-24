@@ -5,8 +5,8 @@ import { motion } from "framer-motion"
 import { Parallax } from "@/components/motion/parallax"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { FiMail, FiPhone, FiMapPin, FiSend, FiLoader, FiCheck, FiAlertCircle } from "react-icons/fi"
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { FiMail, FiMapPin, FiSend, FiLoader, FiCheck, FiAlertCircle } from "react-icons/fi"
+import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa"
 import { contactFormSchema, type ContactFormData } from "@/lib/validations"
 import { trackContactFormSubmit } from "@/lib/analytics"
 import { PERSON, PROFILES } from "@/lib/site"
@@ -126,11 +126,16 @@ export function ContactSection() {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="p-3 rounded-full bg-primary/10">
-                  <FiPhone className="w-5 h-5 text-primary" />
+                  <FaWhatsapp className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">Phone</p>
-                  <a href={`tel:${PERSON.telephone}`} className="text-muted-foreground hover:text-primary transition-colors">
+                  <p className="font-medium">WhatsApp</p>
+                  <a
+                    href={PERSON.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {PERSON.telephoneDisplay}
                   </a>
                 </div>
